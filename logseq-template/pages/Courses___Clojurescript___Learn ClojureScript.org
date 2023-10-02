@@ -60,14 +60,14 @@
     esta característica garantiza un estado consistente de la aplicación libre de errores
     #+END_QUOTE
 * Basic ClojureScript #course-lesson
-:PROPERTIES:
-:type: [[course-lesson]]
-:rating: [[0/10]]
-:level: [[easy]]
-:link: -
-:tags: [[namespaces]], [[repl]]
-:heading: 1
-:END:
+  :PROPERTIES:
+  :type: [[course-lesson]]
+  :rating: [[0/10]]
+  :level: [[easy]]
+  :link: -
+  :tags: [[namespaces]], [[repl]]
+  :heading: 1
+  :END:
 ** Namespaces (Espacios de nombres)
 *** Conceptos
 **** En clojurescript un ~namespace~ agrupa funciones y datos
