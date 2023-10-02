@@ -1,7 +1,7 @@
 * Intro
   #+BEGIN_QUOTE
-  Esta es una plantilla básica de mi flujo de trabajo con Logseq + Org Mode,
-  que iré actualizando a medida que aprendo más de cada tecnología
+  Esta es una plantilla básica de un flujo de trabajo con Logseq + Org Mode,
+  que iremos actualizando a medida que aprendamos más de cada tecnología y distintas formas de documentar
   #+END_QUOTE
 * Logseq
 ** Referencias
@@ -13,6 +13,9 @@
     1. [[https://github.com/logseq/logseq/issues/3898][Dynamic variables is not recognized properly as property value (github.com/logseq/logseq)]]
 *** Videotutoriales
     1. [[https://www.youtube.com/watch?v=Xaa3mry9O5I][Logseq customise sidebar menus (by Ed Nico)]]
+    2. [[https://www.youtube.com/playlist?list=PLwpUQg3DhPIrx0mTZNjg3u5WdYyG0a0m4][Playlist - Logseq (by Tools on Tech)]]
+    3. [[https://www.youtube.com/playlist?list=PLNnZ7rjaL84J99VHDnjybypqgUTvxQ_v5][Playlist - Logseq Workflows (by CombiningMinds PKM)]]
+    4. [[https://www.youtube.com/playlist?list=PLHDFMoLGADVv5JGXXtKzvRbgGh5WW8k5M][Playlist - Logseq (by Edenilson L.R)]]
 * Emacs + Org Mode
 ** Referencias
 *** Referencias Oficiales
