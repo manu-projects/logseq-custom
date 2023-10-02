@@ -1,0 +1,27 @@
+* Intro
+  #+BEGIN_QUOTE
+  Esta es una plantilla básica de mi flujo de trabajo con Logseq + Org Mode,
+  que iré actualizando a medida que aprendo más de cada tecnología
+  #+END_QUOTE
+* Logseq
+** Referencias
+*** Referencias Extraoficiales
+    1. [[https://discuss.logseq.com/tag/lesson][Logseq Lessons (discuss.logseq.com)]]
+    3. [[https://unofficial-logseq-docs.gitbook.io/unofficial-logseq-docs/intermediate-to-advance-features/dynamic-variables][Dynamic Variables (unofficial-logseq-docs.gitbook.io)]]
+    2. [[https://unofficial-logseq-docs.gitbook.io/unofficial-logseq-docs/intermediate-to-advance-features/macros][Macros (unofficial-logseq-docs.gitbook.io)]]
+*** Issues
+    1. [[https://github.com/logseq/logseq/issues/3898][Dynamic variables is not recognized properly as property value (github.com/logseq/logseq)]]
+*** Videotutoriales
+    1. [[https://www.youtube.com/watch?v=Xaa3mry9O5I][Logseq customise sidebar menus (by Ed Nico)]]
+* Emacs + Org Mode
+** Referencias
+*** Referencias Oficiales
+    1. [[https://orgmode.org/guide/Properties.html][Properties Syntax (orgmode.org)]]
+    2. [[https://orgmode.org/manual/Properties-and-Columns.html][Properties and Columns (orgmode.org)]]
+    3. [[https://orgmode.org/worg/org-contrib/org-collector.html][collect properties into tables with org-collector.el (orgmode.org)]]
+*** Referencias Extraoficiales
+    1. [[https://alphaalgorithms.github.io/2019/05/22/emacs-properties-and-columns/][Orgmode properties and columns (alphaalgorithms.github.io)]]
+    2. [[https://www.adventuresinwhy.com/post/org-mode-timekeeping/][Org mode timekeeping (adventuresinwhy.com)]]
+    3. [[https://writequit.org/articles/emacs-org-mode-generate-ids.html][How to use good header id on Emacs org mode (writequit.org)]]
+*** Videotutoriales
+    1. [[https://www.youtube.com/watch?v=ABrv_vnVbkk][The properties (by Rainer Konig)]]
