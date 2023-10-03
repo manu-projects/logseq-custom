@@ -1,5 +1,6 @@
-include helper.mk
-include utils.mk
+include utils/helper.mk
+include utils/utils-unix.mk
+include utils/utils.mk
 
 DIRECTORIES=$(shell cat directories.cfg | xargs)
 
@@ -17,8 +18,8 @@ create-logseq-workflow: ##
 	@read -p "Ingrese el nombre del nuevo flujo de trabajo: " NEW_WORKFLOW_NAME; \
 	$(RSYNC) logseq-template/ $${NEW_WORKFLOW_PATH}/
 
-update-config-workflows: $(addsuffix $(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)) $(addsuffix $(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)) ##
-update-templates-workflows: $(addsuffix $(TEMPLATES_PAGE_FILE),$(DIRECTORIES)) ##
+update-config-workflows: $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)) $(addsuffix $(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)) ##
+update-templates-workflows: $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)) ##
 
 # Ejemplo de como funciona el siguiente target
 # prueba: a.txt b.txt
@@ -26,13 +27,20 @@ update-templates-workflows: $(addsuffix $(TEMPLATES_PAGE_FILE),$(DIRECTORIES)) #
 # a.txt b.txt: archivo.txt
 #	cat $< > $@
 #
-$(addsuffix $(TEMPLATES_PAGE_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(TEMPLATES_PAGE_FILE)
-	cat $< > $@
 
-$(addsuffix $(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
-	@ mv --verbose $(subst .backup,,$@) $@
-#	Otra alternativa, no muy atractiva..
+# Nota: dependencia del objetivo update-template-workflows
+$(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(TEMPLATES_PAGE_FILE)
+	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
+	&& echo "Copiando archivo.." && cat $< > $@ \
+	|| echo "Confirmación cancelada"
+
+# - Nota: dependencia del objetivo update-config-workflows
+#	- Otra alternativa, no muy atractiva..
 # @echo $@  | sed s/.backup// | xargs --verbose --replace=% mv --verbose % $@
+$(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
+	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
+	&& mv --verbose $(subst .backup,,$@) $@ \
+	|| echo "Confirmación cancelada"
 
 $(addsuffix $(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
 	cat $< > $@
@@ -40,8 +48,8 @@ $(addsuffix $(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGS
 # Nota: podría tener una lógica similar al template file y config file,
 # considero que agrega complejidad innecesaria
 copy-pages-to-workflows: ##
-	@cat directories.cfg \
-	| xargs --verbose --replace=% \
-		find % -maxdepth 0 -exec $(RSYNC) $(PAGES_PATH) % \;
+	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
+	&& cat directories.cfg | xargs --verbose --replace=% find % -maxdepth 0 -exec $(RSYNC) $(PAGES_PATH) % \; \
+	|| echo "Confirmación cancelada"
 
 .PHONY: create-logseq-workflow update-templates-workflows update-config-workflows copy-pages-to-workflows
