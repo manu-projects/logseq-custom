@@ -31,19 +31,22 @@ update-templates-workflows: $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)) 
 # Nota: dependencia del objetivo update-template-workflows
 $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(TEMPLATES_PAGE_FILE)
 	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
-	&& echo "Copiando archivo.." && cat $< > $@ \
+	&& echo "Copiando $@ .." && cat $< > $@ \
 	|| echo "Confirmación cancelada"
 
 # - Nota: dependencia del objetivo update-config-workflows
-#	- Otra alternativa, no muy atractiva..
-# @echo $@  | sed s/.backup// | xargs --verbose --replace=% mv --verbose % $@
 $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
 	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
 	&& mv --verbose $(subst .backup,,$@) $@ \
 	|| echo "Confirmación cancelada"
+#
+# Otra alternativa a la acción del target anterior, pero no muy amigable a la vista..
+# @echo $@  | sed s/.backup// | xargs --verbose --replace=% mv --verbose % $@
 
 $(addsuffix $(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
-	cat $< > $@
+	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
+	&& echo "Copiando $@ .." && cat $< > $@ \
+	|| echo "Confirmación cancelada"
 
 # Nota: podría tener una lógica similar al template file y config file,
 # considero que agrega complejidad innecesaria
