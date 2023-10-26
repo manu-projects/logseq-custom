@@ -18,7 +18,7 @@ create-logseq-workflow: ##
 	@read -p "Ingrese el nombre del nuevo flujo de trabajo: " NEW_WORKFLOW_NAME; \
 	$(RSYNC) logseq-template/ $${NEW_WORKFLOW_PATH}/
 
-update-config-workflows: $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)) $(addsuffix $(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)) ##
+update-config-workflows: $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)) $(addsuffix /$(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)) ##
 update-templates-workflows: $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)) ##
 
 # Ejemplo de como funciona el siguiente target
@@ -43,9 +43,9 @@ $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR
 # Otra alternativa a la acción del target anterior, pero no muy amigable a la vista..
 # @echo $@  | sed s/.backup// | xargs --verbose --replace=% mv --verbose % $@
 
-$(addsuffix $(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
+$(addsuffix /$(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
 	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
-	&& echo "Copiando $@ .." && cat $< > $@ \
+	&& echo "Copiando $< a $@ .." && cat $< > $@ \
 	|| echo "Confirmación cancelada"
 
 # Nota: podría tener una lógica similar al template file y config file,
