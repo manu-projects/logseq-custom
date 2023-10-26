@@ -1,3 +1,5 @@
+#+TITLE: Logseq Custom
+[[file:images/meme-logseq.png]]
 * Intro
   #+BEGIN_QUOTE
   Esta es una plantilla básica de un flujo de trabajo con Logseq + Org Mode,
