@@ -5,15 +5,15 @@
   #+END_QUOTE
 * Modo de uso
 ** Configuración
-   - en ~directories.cfg~ agregar las rutas absolutas dónde ya habíamos creado un directorio para logseq
+   - en el archivo de configuración ~directories.cfg~
+     - agregar las *rutas absolutas* dónde ya _habíamos creado un directorio para logseq_
+     - las rutas de los directorios, NO deben finalizar con ~/~
 
    #+BEGIN_EXAMPLE
    Ejemplo de rutas absolutas que podriamos agregar en directories.cfg
 
-   /home/jelou/Documents/git/manu-learning/aprende-clojurescript/logseq-docs
-   /home/jelou/Documents/git/manu-learning/aprende-clojure/logseq-docs
-   /home/jelou/Documents/git/manu-learning/aprende-electronica/logseq-docs
-   /home/jelou/Documents/git/manu-learning/aprende-bash/logseq-docs
+   /home/jelou/Documents/git/manu-learning/aprende-electronica/doc-logseq
+   /home/jelou/Documents/git/manu-learning/aprende-bash/doc-logseq
    #+END_EXAMPLE
 ** Ejemplo de uso
    #+BEGIN_SRC shell
