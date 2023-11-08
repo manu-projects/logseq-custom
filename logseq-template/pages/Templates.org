@@ -61,6 +61,7 @@
    :type: [[Videotutorial]]
    :level: [[easy]]
    :language: [[english]]
+   :content-type: [[theory]] [[practice]]
    :rating: [[0/10]]
    :link: -
    :channel: -
@@ -76,6 +77,7 @@
    :type: [[Tutorial]]
    :level: [[easy]]
    :language: [[english]]
+   :content-type: [[theory]] [[practice]]
    :rating: [[0/10]]
    :source: [[non-official]]
    :link: -
@@ -91,6 +93,7 @@
    :type: [[Course]]
    :level: [[easy]]
    :language: [[english]]
+   :content-type: [[theory]] [[practice]]
    :rating: [[0/10]]
    :source: [[non-official]]
    :website: -
@@ -109,6 +112,7 @@
    :PROPERTIES:
    :type: [[course-lesson]]
    :level: [[easy]]
+   :content-type: [[theory]] [[practice]]
    :rating: [[0/10]]
    :link: -
    :tags: -
