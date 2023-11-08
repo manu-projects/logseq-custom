@@ -13,13 +13,22 @@ LOGSEQ_CONFIG_FILE=logseq/config.edn
 ##@ Operaciones
 # Nota: no utilizamos los directorios como targets, porque dejamos elegir al usuario el nombre del directorio
 create-logseq-workflow: ##
-	@read -p "Ingrese la ruta del nuevo flujo de trabajo: " NEW_WORKFLOW_PATH; \
-	mkdir --parents $${NEW_WORKFLOW_PATH}; \
-	@read -p "Ingrese el nombre del nuevo flujo de trabajo: " NEW_WORKFLOW_NAME; \
-	$(RSYNC) logseq-template/ $${NEW_WORKFLOW_PATH}/
+	@echo "Ruta del nuevo flujo de trabajo" \
+		&& echo " > NO agregar el caracter / al final" \
+		&& echo " > Ej. /home/jelou/Documents/git/manu-app" \
+		&& read -p " > ingrese la ruta: " NEW_WORKFLOW_PATH \
+	&& echo -e "\nNombre del nuevo flujo de trabajo" \
+		&& echo " > NO agregar el caracter / al final" \
+		&& echo " > Ej. doc-logseq" \
+		&& read -p " > ingrese el nombre: " NEW_WORKFLOW_NAME \
+	&& mkdir --parents --verbose $${NEW_WORKFLOW_PATH}/$${NEW_WORKFLOW_NAME} \
+	&& $(RSYNC) logseq-template/ $${NEW_WORKFLOW_PATH}/$${NEW_WORKFLOW_NAME}
 
-update-config-workflows: $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)) $(addsuffix /$(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)) ##
+# en la dependencia del target agregamos como sufijo el nombre de los directorios
 update-templates-workflows: $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)) ##
+
+# en las dependencias del target agregamos como sufijo el nombre de los directorios
+update-config-workflows: $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)) $(addsuffix /$(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)) ##
 
 # Ejemplo de como funciona el siguiente target
 # prueba: a.txt b.txt
