@@ -43,6 +43,8 @@ $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(TE
 	&& echo "Copiando $@ .." && cat $< > $@ \
 	|| echo "Confirmación cancelada"
 
+# TODO: Cambiar el nombre del target, que contenga la fecha que se creó
+# TODO: Aparece 2 veces el popup de whiptail en vez de 1 por cada proyecto agregado
 # - Nota: dependencia del objetivo update-config-workflows
 $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
 	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
