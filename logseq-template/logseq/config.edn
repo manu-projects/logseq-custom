@@ -19,6 +19,35 @@
  ;; or ":todo" for TODO/DOING style.
  :preferred-workflow :todo
 
+ ;; Enable journals
+ :feature/enable-journals? false
+
+ ;; Enable flashcards
+ :feature/enable-flashcards? false
+
+
+ ;; When :all-pages-public? true, export repo would export all pages within that repo.
+ ;; Regardless of whether you've set any page to public or not.
+ ;; Example:
+ :publishing/all-pages-public? true
+
+ ;; Specify default home page and sidebar status for Logseq
+ ;; If not specified, Logseq default opens journals page on startup
+ ;; value for `:page` is name of page
+ ;; Possible options for `:sidebar` are
+ ;; 1. `"Contents"` to open up `Contents` in sidebar by default
+ ;; 2. `page name` to open up some page in sidebar
+ ;; 3. Or multiple pages in an array ["Contents" "Page A" "Page B"]
+ ;; If `:sidebar` is not set, sidebar will be hidden
+ ;; Example:
+ ;; 1. Setup page "Changelog" as home page and "Contents" in sidebar
+ ;; :default-home {:page "Changelog", :sidebar "Contents"}
+ ;; 2. Setup page "Jun 3rd, 2021" as home page without sidebar
+ ;; :default-home {:page "Jun 3rd, 2021"}
+ ;; 3. Setup page "home" as home page with multiple pages in sidebar
+ ;; :default-home {:page "home" :sidebar ["page a" "page b"]}
+ :default-home {:page "home"}
+
  ;; TODO: elegir propiedades
  ;; hide specific properties for blocks
  ;; E.g. :block-hidden-properties #{:created-at :updated-at}
@@ -65,12 +94,6 @@
  ;; After toggle this option, please remember to rebuild your search index by press (cmd+c cmd+s).
  :feature/enable-search-remove-accents? true
 
- ;; Enable journals
- ;; :feature/enable-journals? true
-
- ;; Enable flashcards
- ;; :feature/enable-flashcards? true
-
  ;; Enable Whiteboards
  ;; :feature/enable-whiteboards? true
 
@@ -110,27 +133,6 @@
  ;; 2. `:four-spaces` as four spaces
  ;; 3. `:two-spaces` as two spaces
  ;; :export/bullet-indentation :tab
-
- ;; When :all-pages-public? true, export repo would export all pages within that repo.
- ;; Regardless of whether you've set any page to public or not.
- ;; Example:
- ;; :publishing/all-pages-public? true
-
- ;; Specify default home page and sidebar status for Logseq
- ;; If not specified, Logseq default opens journals page on startup
- ;; value for `:page` is name of page
- ;; Possible options for `:sidebar` are
- ;; 1. `"Contents"` to open up `Contents` in sidebar by default
- ;; 2. `page name` to open up some page in sidebar
- ;; 3. Or multiple pages in an array ["Contents" "Page A" "Page B"]
- ;; If `:sidebar` is not set, sidebar will be hidden
- ;; Example:
- ;; 1. Setup page "Changelog" as home page and "Contents" in sidebar
- ;; :default-home {:page "Changelog", :sidebar "Contents"}
- ;; 2. Setup page "Jun 3rd, 2021" as home page without sidebar
- ;; :default-home {:page "Jun 3rd, 2021"}
- ;; 3. Setup page "home" as home page with multiple pages in sidebar
- ;; :default-home {:page "home" :sidebar ["page a" "page b"]}
 
  ;; Tell logseq to use a specific folder in the repo as a default location for notes
  ;; if not specified, notes are stored in `pages` directory
