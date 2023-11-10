@@ -1,14 +1,19 @@
-* TODO Note
+* Paper
   :PROPERTIES:
-  :template: Note
+  :template: Paper
   :template-including-parent: false
   :END:
-** #Note
+** #paper #scientific-paper
    :PROPERTIES:
-   :type: [[Note]]
+   :type: [[Paper]]
+   :language: [[english]]
+   :rating: [[0/10]]
+   :source-name: -
+   :source-link: -
+   :file: -
+   :year-publication: -
+   :author: -
    :tags: -
-   :date-created: <% today %>
-   :date-updated: <% today %>
    :END:
 * Article
   :PROPERTIES:
@@ -43,7 +48,7 @@
 ** #Documentation
    :PROPERTIES:
    :type: [[Documentation]]
-   :source: [[non-official]]
+   :source-type: [[non-official]]
    :language: [[english]]
    :rating: [[0/10]]
    :link: -
@@ -79,7 +84,7 @@
    :language: [[english]]
    :content-type: [[theory]] [[practice]]
    :rating: [[0/10]]
-   :source: [[non-official]]
+   :source-type: [[non-official]]
    :link: -
    :tags: -
    :END:
@@ -95,7 +100,7 @@
    :language: [[english]]
    :content-type: [[theory]] [[practice]]
    :rating: [[0/10]]
-   :source: [[non-official]]
+   :source-type: [[non-official]]
    :website: -
    :playlist: -
    :year-publication: -
