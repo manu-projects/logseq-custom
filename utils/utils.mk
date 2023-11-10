@@ -7,7 +7,7 @@ NEWT_COLOR_PALETTE_DIALOGS="$(shell cat $(UTILS_CONFIGS)/whiptail-theme-green.cf
 WHIPTAIL_COLORED=export NEWT_COLORS=$(NEWT_COLOR_PALETTE_DIALOGS); whiptail
 
 WHIPTAIL_CONFIRM_ACTION = $(WHIPTAIL_COLORED) \
-													--yesno "Desea confirmar la acción?" 10 50 \
+													--yesno "$${WHIPTAIL_DESCRIPTION}" 15 100 \
 													--yes-button "Confirmar" \
 													--no-button "Cancelar" \
 

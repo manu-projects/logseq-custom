@@ -11,7 +11,8 @@ TEMPLATES_PAGE_FILE=pages/Templates.org
 LOGSEQ_CONFIG_FILE=logseq/config.edn
 
 ##@ Operaciones
-# Nota: no utilizamos los directorios como targets, porque dejamos elegir al usuario el nombre del directorio
+# Notas:
+#  1. no utilizamos los directorios como targets, porque dejamos elegir al usuario el nombre del directorio
 create-logseq-workflow: ##
 	@echo "Ruta del nuevo flujo de trabajo" \
 		&& echo " > NO agregar el caracter / al final" \
@@ -24,10 +25,9 @@ create-logseq-workflow: ##
 	&& mkdir --parents --verbose $${NEW_WORKFLOW_PATH}/$${NEW_WORKFLOW_NAME} \
 	&& $(RSYNC) logseq-template/ $${NEW_WORKFLOW_PATH}/$${NEW_WORKFLOW_NAME}
 
-# en la dependencia del target agregamos como sufijo el nombre de los directorios
+# Notas:
+#  1. en la dependencia del target agregamos como sufijo el nombre de los directorios
 update-templates-workflows: $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)) ##
-
-# en las dependencias del target agregamos como sufijo el nombre de los directorios
 update-config-workflows: $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)) $(addsuffix /$(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)) ##
 
 # Ejemplo de como funciona el siguiente target
@@ -37,30 +37,33 @@ update-config-workflows: $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES
 #	cat $< > $@
 #
 
-# Nota: dependencia del objetivo update-template-workflows
+# Notas:
+#  1. dependencia del objetivo update-template-workflows
 $(addsuffix /$(TEMPLATES_PAGE_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(TEMPLATES_PAGE_FILE)
-	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
-	&& echo "Copiando $@ .." && cat $< > $@ \
+	WHIPTAIL_DESCRIPTION="Archivo:\n $(notdir $@) \n\nRuta origen:\n $(dir $<) \n\nRuta destino:\n $(dir $@)"; \
+	$(WHIPTAIL_CONFIRM_COPY_ACTION) \
+	&& echo "Copiando de $< en $@ .." && cat $< 1> $@ \
 	|| echo "Confirmación cancelada"
 
 # TODO: Cambiar el nombre del target, que contenga la fecha que se creó
-# TODO: Aparece 2 veces el popup de whiptail en vez de 1 por cada proyecto agregado
-# - Nota: dependencia del objetivo update-config-workflows
+# Notas:
+#  1. dependencia del objetivo update-config-workflows
 $(addsuffix /$(LOGSEQ_CONFIG_FILE).backup,$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
-	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
-	&& mv --verbose $(subst .backup,,$@) $@ \
-	|| echo "Confirmación cancelada"
+	@echo "Creando una copia de respaldo de $(subst .backup,,$@)"
+	mv --verbose $(subst .backup,,$@) $@
+
 #
 # Otra alternativa a la acción del target anterior, pero no muy amigable a la vista..
 # @echo $@  | sed s/.backup// | xargs --verbose --replace=% mv --verbose % $@
 
 $(addsuffix /$(LOGSEQ_CONFIG_FILE),$(DIRECTORIES)): $(LOGSEQ_TEMPLATE_DIR)/$(LOGSEQ_CONFIG_FILE)
-	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
-	&& echo "Copiando $< a $@ .." && cat $< > $@ \
+	@WHIPTAIL_DESCRIPTION="Archivo:\n $(notdir $@) \n\nRuta origen:\n $(dir $<) \n\nRuta destino:\n $(dir $@)"; \
+	$(WHIPTAIL_CONFIRM_COPY_ACTION) \
+	&& echo "Copiando de $< en $@ .." && cat $< 1> $@ \
 	|| echo "Confirmación cancelada"
 
-# Nota: podría tener una lógica similar al template file y config file,
-# considero que agrega complejidad innecesaria
+# Notas:
+#  1. podría tener una lógica similar al template file y config file, considero que agrega complejidad innecesaria
 copy-pages-to-workflows: ##
 	@$(WHIPTAIL_CONFIRM_COPY_ACTION) \
 	&& cat directories.cfg | xargs --verbose --replace=% find % -maxdepth 0 -exec $(RSYNC) $(PAGES_PATH) % \; \
